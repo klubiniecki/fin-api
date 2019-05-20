@@ -6,6 +6,7 @@ import {
 } from "graphql";
 import expenseGraphQLType from "./expenseType";
 import Expense from "../models/expense";
+import { ExpenseInterface } from "../types";
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -44,15 +45,19 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Expense.findById(args.id)
-          .then(expense => {
-            (expense.name = args.name),
-              (expense.date = args.date),
-              (expense.amount = args.amount),
-              (expense.category = args.category);
-            return expense.save();
-          })
-          .then(updatedExpense => updatedExpense)
-          .catch(err => console.log(err));
+          .then(
+            (expense: ExpenseInterface): ExpenseInterface => {
+              expense.name = args.name;
+              expense.date = args.date;
+              expense.amount = args.amount;
+              expense.category = args.category;
+              expense.regular = args.regular;
+              expense.save();
+              return expense;
+            }
+          )
+          .then((updatedExpense): ExpenseInterface => updatedExpense)
+          .catch((err): void => console.log(err));
       }
     },
 
@@ -63,9 +68,14 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return Expense.findOneAndDelete(args.id)
-          .then(expense => expense.remove())
-          .then(deletedExpense => deletedExpense)
-          .catch(err => console.log(err));
+          .then(
+            (expense): ExpenseInterface => {
+              expense.remove();
+              return expense;
+            }
+          )
+          .then((deletedExpense): ExpenseInterface => deletedExpense)
+          .catch((err): void => console.log(err));
       }
     }
   }

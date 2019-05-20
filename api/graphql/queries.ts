@@ -1,5 +1,4 @@
 import {
-  GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
   GraphQLList,
@@ -9,12 +8,12 @@ import {
 } from "graphql";
 import expenseGraphQLType from "./expenseType";
 import Expense from "../models/expense";
-import mutation from "./mutations";
-import getQueryFromFilters from "../getQueryFromFilters";
+import getQueryFromFilters from "../utils/getQueryFromFilters";
 
 const FilterType = new GraphQLInputObjectType({
   name: "FilterType",
   fields: {
+    name: { type: GraphQLString },
     startDate: { type: GraphQLString },
     endDate: { type: GraphQLString },
     category: { type: GraphQLString },
@@ -33,7 +32,9 @@ const query = new GraphQLObjectType({
         filters: { type: FilterType }
       },
       resolve(parent, args) {
-        return Expense.find(getQueryFromFilters(args.filters));
+        return Expense.find(
+          args.filters ? getQueryFromFilters(args.filters) : {}
+        );
       }
     },
     expense: {
@@ -46,9 +47,4 @@ const query = new GraphQLObjectType({
   }
 });
 
-const schema = new GraphQLSchema({
-  query,
-  mutation
-});
-
-export default schema;
+export default query;

@@ -1,5 +1,7 @@
-const getQueryFromFilters = filters => {
-  const query = {};
+import { QueryInterface } from "../types";
+
+const getQueryFromFilters = (filters): QueryInterface => {
+  const query: QueryInterface = {};
   if (filters.startDate) {
     if (!query.date) {
       query.date = {};
@@ -24,15 +26,21 @@ const getQueryFromFilters = filters => {
     }
     query.amount["$lte"] = filters.maxAmount;
   }
+  if ("name" in filters) {
+    if (!query.name) {
+      query.name = "";
+    }
+    query.name = filters.name;
+  }
   if ("category" in filters) {
     if (!query.category) {
-      query.category = {};
+      query.category = "";
     }
     query.category = filters.category;
   }
   if ("regular" in filters) {
     if (!query.regular) {
-      query.regular = {};
+      query.regular = false;
     }
     query.regular = filters.regular;
   }

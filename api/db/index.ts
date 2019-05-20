@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 
 const initDB = () => {
   const DB_USER = process.env.DB_USER || "user";
