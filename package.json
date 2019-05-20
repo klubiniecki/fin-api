@@ -1,0 +1,21 @@
+{
+  "name": "fin-api",
+  "version": "1.0.5",
+  "description": "API for finance tracker.",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "nodemon api/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "klubiniecki",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "express": "^4.17.0",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.3.0",
+    "mongoose": "^5.5.9",
+    "nodemon": "^1.19.0",
+    "prettier": "^1.17.1"
+  }
+}
