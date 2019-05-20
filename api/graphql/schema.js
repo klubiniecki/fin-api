@@ -1,4 +1,4 @@
-const {
+import {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
@@ -6,17 +6,18 @@ const {
   GraphQLInt,
   GraphQLBoolean,
   GraphQLInputObjectType
-} = require("graphql");
-const expenseGraphQLType = require("./expenseType");
-const Expense = require("../models/expense");
-const mutation = require("./mutations");
-const getQueryFromFilters = require("../getQueryFromFilters");
+} from "graphql";
+import expenseGraphQLType from "./expenseType";
+import Expense from "../models/expense";
+import mutation from "./mutations";
+import getQueryFromFilters from "../getQueryFromFilters";
 
 const FilterType = new GraphQLInputObjectType({
   name: "FilterType",
   fields: {
     startDate: { type: GraphQLString },
     endDate: { type: GraphQLString },
+    category: { type: GraphQLString },
     minAmount: { type: GraphQLInt },
     maxAmount: { type: GraphQLInt },
     regular: { type: GraphQLBoolean }
@@ -45,7 +46,9 @@ const query = new GraphQLObjectType({
   }
 });
 
-module.exports = new GraphQLSchema({
+const schema = new GraphQLSchema({
   query,
   mutation
 });
+
+export default schema;

@@ -1,13 +1,13 @@
-const {
+import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLBoolean
-} = require("graphql");
-const expenseGraphQLType = require("./expenseType");
-const Expense = require("../models/expense");
+} from "graphql";
+import expenseGraphQLType from "./expenseType";
+import Expense from "../models/expense";
 
-const Mutation = new GraphQLObjectType({
+const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
     addExpense: {
@@ -71,4 +71,4 @@ const Mutation = new GraphQLObjectType({
   }
 });
 
-module.exports = Mutation;
+export default mutation;

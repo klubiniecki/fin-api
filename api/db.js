@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const initDB = () => {
   const DB_USER = process.env.DB_USER || "user";
@@ -14,4 +14,4 @@ const initDB = () => {
   });
 };
 
-module.exports = initDB;
+export default initDB;

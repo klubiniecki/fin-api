@@ -1,9 +1,9 @@
-const express = require("express");
-const graphqlHTTP = require("express-graphql");
-const schema = require("./graphql/schema");
-const initDB = require("./db");
-
+import express from "express";
+import graphqlHTTP from "express-graphql";
+import schema from "./graphql/schema";
+import initDB from "./db";
 require("dotenv").config();
+
 initDB();
 
 const app = express();

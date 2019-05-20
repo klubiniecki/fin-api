@@ -1,4 +1,4 @@
-getQueryFromFilters = filters => {
+const getQueryFromFilters = filters => {
   const query = {};
   if (filters.startDate) {
     if (!query.date) {
@@ -24,6 +24,12 @@ getQueryFromFilters = filters => {
     }
     query.amount["$lte"] = filters.maxAmount;
   }
+  if ("category" in filters) {
+    if (!query.category) {
+      query.category = {};
+    }
+    query.category = filters.category;
+  }
   if ("regular" in filters) {
     if (!query.regular) {
       query.regular = {};
@@ -33,4 +39,4 @@ getQueryFromFilters = filters => {
   return query;
 };
 
-module.exports = getQueryFromFilters;
+export default getQueryFromFilters;

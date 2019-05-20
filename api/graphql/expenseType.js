@@ -1,11 +1,9 @@
-const graphql = require("graphql");
-
-const {
+import {
   GraphQLObjectType,
   GraphQLString,
   GraphQLBoolean,
   GraphQLInt
-} = graphql;
+} from "graphql";
 
 const ExpenseType = new GraphQLObjectType({
   name: "Expense",
@@ -19,4 +17,4 @@ const ExpenseType = new GraphQLObjectType({
   })
 });
 
-module.exports = ExpenseType;
+export default ExpenseType;
