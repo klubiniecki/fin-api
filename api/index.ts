@@ -8,22 +8,22 @@ import query from "./graphql/queries";
 import mutation from "./graphql/mutations";
 
 dotenv.config();
-
 initDB();
 
 const app = express();
 app.on("error", err => {
   console.log("server error", err);
 });
-app.use(cors());
 
+const { NODE_ENV, PORT } = process.env;
 const schema = new GraphQLSchema({ query, mutation });
 app.use(
   "/",
+  cors(),
   graphqlHTTP({
     schema,
-    graphiql: true
+    graphiql: NODE_ENV === "development"
   })
 );
 
-app.listen(process.env.PORT || 9000);
+app.listen(PORT);
