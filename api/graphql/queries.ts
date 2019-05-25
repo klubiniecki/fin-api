@@ -34,7 +34,7 @@ const query = new GraphQLObjectType({
       resolve(parent, args) {
         return Expense.find(
           args.filters ? getQueryFromFilters(args.filters) : {}
-        );
+        ).sort({ date: "desc" });
       }
     },
     expense: {

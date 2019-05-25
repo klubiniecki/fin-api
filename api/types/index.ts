@@ -1,13 +1,19 @@
 import { Document } from "mongoose";
 
-type Category = "clothes" | "groceries" | "restaurant" | "";
+export type Category =
+  | "clothes"
+  | "groceries"
+  | "restaurant"
+  | "car"
+  | "home"
+  | "";
 
 export interface QueryInterface {
-  name?: string;
+  name: string;
   date?: string | {};
-  amount?: number | {};
-  category?: Category;
-  regular?: boolean;
+  amount: number | {};
+  category: Category;
+  regular: boolean;
 }
 
 export interface ExpenseInterface extends QueryInterface, Document {}

@@ -1,7 +1,13 @@
 import { QueryInterface } from "../types";
 
 const getQueryFromFilters = (filters): QueryInterface => {
-  const query: QueryInterface = {};
+  const query: QueryInterface = {
+    name: "",
+    category: "",
+    amount: {},
+    regular: false
+  };
+
   if (filters.startDate) {
     if (!query.date) {
       query.date = {};

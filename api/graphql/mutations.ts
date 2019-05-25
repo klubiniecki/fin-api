@@ -20,7 +20,7 @@ const mutation = new GraphQLObjectType({
         category: { type: GraphQLString },
         regular: { type: GraphQLBoolean }
       },
-      resolve(parent, args) {
+      resolve(parent, args: ExpenseInterface) {
         const newExpense = new Expense({
           name: args.name,
           date: args.date,
@@ -67,13 +67,11 @@ const mutation = new GraphQLObjectType({
         id: { type: GraphQLString }
       },
       resolve(parent, args) {
-        return Expense.findOneAndDelete(args.id)
-          .then(
-            (expense): ExpenseInterface => {
-              expense.remove();
-              return expense;
-            }
-          )
+        return Expense.findByIdAndDelete(args.id)
+          .then((expense: ExpenseInterface) => {
+            expense.remove();
+            return expense;
+          })
           .then((deletedExpense): ExpenseInterface => deletedExpense)
           .catch((err): void => console.log(err));
       }
