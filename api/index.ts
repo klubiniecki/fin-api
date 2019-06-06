@@ -27,3 +27,5 @@ app.use(
 );
 
 app.listen(PORT);
+
+export default app;

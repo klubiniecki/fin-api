@@ -5,6 +5,7 @@ const getQueryFromFilters = (filters): QueryInterface => {
     name: "",
     category: "",
     amount: {},
+    goal: "",
     regular: false
   };
 
@@ -37,6 +38,12 @@ const getQueryFromFilters = (filters): QueryInterface => {
       query.name = "";
     }
     query.name = filters.name;
+  }
+  if ("goal" in filters) {
+    if (!query.goal) {
+      query.goal = "";
+    }
+    query.goal = filters.goal;
   }
   if ("category" in filters) {
     if (!query.category) {

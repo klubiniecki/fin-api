@@ -12,6 +12,7 @@ export interface QueryInterface {
   name: string;
   date?: string | {};
   amount: number | {};
+  goal: string;
   category: Category;
   regular: boolean;
 }

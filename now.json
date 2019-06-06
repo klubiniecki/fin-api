@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "name": "fin-api",
+  "builds": [
+    { "src": "api/index.ts", "use": "@now/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/" }
+  ],
+  "env": {
+    "DB_URI": "@db-uri",
+    "NODE_ENV": "@node-env"
+  }
+}
