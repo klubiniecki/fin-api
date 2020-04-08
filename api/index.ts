@@ -1,31 +1,20 @@
-import { GraphQLSchema } from "graphql";
 import * as express from "express";
-import * as graphqlHTTP from "express-graphql";
 import * as dotenv from "dotenv";
 import * as cors from "cors";
-import initDB from "./db";
-import query from "./graphql/queries";
-import mutation from "./graphql/mutations";
+import * as bodyParser from "body-parser";
+import initializeDatabase from "./database/initializeDatabase";
+import router from "./router/router";
 
 dotenv.config();
-initDB();
+initializeDatabase();
 
 const app = express();
-app.on("error", err => {
-  console.log("server error", err);
-});
+app.on("error", (err) => console.error("Server error:", err));
 
-const { NODE_ENV, PORT } = process.env;
-const schema = new GraphQLSchema({ query, mutation });
-app.use(
-  "/",
-  cors(),
-  graphqlHTTP({
-    schema,
-    graphiql: NODE_ENV === "development"
-  })
-);
+app.use(cors());
+app.use(bodyParser.json());
+app.use("/", router);
 
-app.listen(PORT);
+app.listen(process.env.PORT, () => console.log(`Port: ${process.env.PORT}`));
 
 export default app;

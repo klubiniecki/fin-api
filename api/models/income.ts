@@ -5,8 +5,8 @@ const IncomeSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   amount: Number,
   category: String,
-  regular: { type: Boolean, default: false }
+  regular: { type: Boolean, default: false },
 });
-const income = mongoose.model("Income", IncomeSchema);
+const Income = mongoose.model("Income", IncomeSchema);
 
-export default income;
+export default Income;

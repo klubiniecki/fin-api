@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "skipLibCheck": true,
     "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "target": "es6",
-    "outDir": "build"
+    "outDir": "build",
+    "noImplicitAny": false
   },
-  "include": [
-    "api/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["api/**/*.ts"]
 }

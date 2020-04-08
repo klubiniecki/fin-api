@@ -5,8 +5,8 @@ const ExpenseSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   amount: Number,
   category: String,
-  regular: { type: Boolean, default: false }
+  regular: { type: Boolean, default: false },
 });
-const expense = mongoose.model("Expense", ExpenseSchema);
+const Expense = mongoose.model("Expense", ExpenseSchema);
 
-export default expense;
+export default Expense;
