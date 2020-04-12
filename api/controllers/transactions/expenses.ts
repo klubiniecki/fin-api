@@ -1,17 +1,33 @@
-import Expense from "../models/expense";
-import AggregationService from "../services/aggregationService";
+import Expense from "../../models/expense";
+import AggregationService from "../../services/aggregationService";
+import getTotalAmount from "../../utils/getTotalAmount";
 
 const ExpensesController = () => {
+  const getPipeline = (query: string) =>
+    AggregationService().getPipelineFromQuery(query);
+
   const getExpenses = async ({ query }, res: any) => {
     try {
-      const expenses = await Expense.aggregate(
-        AggregationService().getExpensePipelineFromQuery(query)
-      );
-      console.log(query);
+      const expenses = await Expense.aggregate(getPipeline(query));
       if (expenses.length < 1) {
         res.status(404).json({ error: `Wrong query: ${query}` });
       }
       res.json(expenses);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+  const getTotalExpenses = async ({ query }, res: any) => {
+    try {
+      const expenses = await Expense.aggregate(getPipeline(query));
+      if (expenses.length < 1) {
+        res.status(404).json({ error: `Wrong query: ${query}` });
+      }
+
+      const totalExpenses = getTotalAmount(expenses);
+
+      res.json({ totalExpenses });
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -63,7 +79,14 @@ const ExpensesController = () => {
     }
   };
 
-  return { getExpense, getExpenses, addExpense, updateExpense, deleteExpense };
+  return {
+    getExpense,
+    getExpenses,
+    addExpense,
+    updateExpense,
+    deleteExpense,
+    getTotalExpenses,
+  };
 };
 
 export default ExpensesController;

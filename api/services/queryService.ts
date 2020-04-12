@@ -1,19 +1,29 @@
-import getCamelCase from "../utils/getCamelCase";
+import getFirstDateOfMonth from "../utils/getFirstDateOfMonth";
 
 const QueryService = () => {
   const getMatchFromQuery = (query = "") => {
-    let match: any = {};
+    let match: any = {
+      date: { $gte: getFirstDateOfMonth() },
+    };
 
     if (query["name"]) {
-      match.name = { $in: [getCamelCase(query["name"])] };
+      match.name = { $in: [query["name"]] };
     }
 
     if (query["category"]) {
-      const categories = query["category"]
-        .split(",")
-        .map((category) => getCamelCase(category));
+      const categories = query["category"].split(",");
 
       match.category = { $in: categories };
+    }
+
+    if (query["startDate"]) {
+      const date = new Date(query["from"]);
+      match.date = { $gte: date };
+    }
+
+    if (query["endDate"]) {
+      const date = new Date(query["from"]);
+      match.date = { $lte: date };
     }
 
     return match;
@@ -30,18 +40,6 @@ const QueryService = () => {
   };
 
   return { getMatchFromQuery, getSortFromQuery };
-
-  //   const getLimitFromQuery = ({ page_size }) => {
-  //     if (Number(page_size) > MAX_PAGE_SIZE) {
-  //       return MAX_PAGE_SIZE;
-  //     }
-
-  //     return Number(page_size) || PAGE_SIZE;
-  //   };
-
-  //   const getSkipFromQuery = ({ page }) => {
-  //     return Number(page) * PAGE_SIZE - PAGE_SIZE || 0;
-  //   };
 };
 
 export default QueryService;

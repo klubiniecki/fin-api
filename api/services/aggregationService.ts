@@ -3,18 +3,16 @@ import QueryService from "./queryService";
 const { getMatchFromQuery, getSortFromQuery } = QueryService();
 
 const AggregationService = () => {
-  const getExpensePipelineFromQuery = (query) => {
-    return [
-      {
-        $match: getMatchFromQuery(query),
-      },
-      {
-        $sort: getSortFromQuery(query),
-      },
-    ];
-  };
+  const getPipelineFromQuery = (query: string) => [
+    {
+      $match: getMatchFromQuery(query),
+    },
+    {
+      $sort: getSortFromQuery(query),
+    },
+  ];
 
-  return { getExpensePipelineFromQuery };
+  return { getPipelineFromQuery };
 };
 
 export default AggregationService;

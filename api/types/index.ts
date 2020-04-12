@@ -1,20 +1,6 @@
-import { Document } from "mongoose";
-
-export type Category =
-  | "clothes"
-  | "groceries"
-  | "restaurant"
-  | "car"
-  | "home"
-  | "";
-
-export interface QueryInterface {
+export interface Transaction {
   name: string;
-  date?: string | {};
-  amount: number | {};
-  goal: string;
-  category: Category;
-  regular: boolean;
+  date: Date;
+  amount: number;
+  category: String;
 }
-
-export interface ExpenseInterface extends QueryInterface, Document {}

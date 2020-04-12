@@ -1,13 +1,34 @@
-import Saving from "../models/saving";
+import AggregationService from "../../services/aggregationService";
+import getTotalAmount from "../../utils/getTotalAmount";
+import Saving from "../../models/saving";
 
 const SavingsController = () => {
+  const getPipeline = (query: string) =>
+    AggregationService().getPipelineFromQuery(query);
+
   const getSavings = async ({ query }, res: any) => {
     try {
-      const saving = await Saving.find();
-      if (saving.length < 1) {
+      const savings = await Saving.aggregate(getPipeline(query));
+      if (savings.length < 1) {
         res.status(404).json({ error: `Wrong query: ${query}` });
       }
-      res.json(saving);
+      res.json(savings);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+  const getTotalSavings = async ({ query }, res: any) => {
+    try {
+      const savings = await Saving.aggregate(getPipeline(query));
+
+      if (savings.length < 1) {
+        res.status(404).json({ error: `Wrong query: ${query}` });
+      }
+
+      const totalSavings = getTotalAmount(savings);
+
+      res.json({ totalSavings });
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -59,7 +80,14 @@ const SavingsController = () => {
     }
   };
 
-  return { getSaving, getSavings, addSaving, updateSaving, deleteSaving };
+  return {
+    getSaving,
+    getSavings,
+    addSaving,
+    updateSaving,
+    deleteSaving,
+    getTotalSavings,
+  };
 };
 
 export default SavingsController;

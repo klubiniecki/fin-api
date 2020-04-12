@@ -5,6 +5,7 @@ const AccountSchema = new mongoose.Schema({
   localAmount: Number,
   amount: Number,
 });
+
 const Account = mongoose.model("Account", AccountSchema);
 
 export default Account;

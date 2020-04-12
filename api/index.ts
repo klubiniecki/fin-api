@@ -15,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/", router);
 
-app.listen(process.env.PORT, () => console.log(`Port: ${process.env.PORT}`));
+const { PORT } = process.env;
+app.listen(PORT, () => console.log(`Port: ${PORT}`));
 
 export default app;

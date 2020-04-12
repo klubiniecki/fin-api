@@ -1,13 +1,35 @@
-import Income from "../models/income";
+import Income from "../../models/income";
+import AggregationService from "../../services/aggregationService";
+import getTotalAmount from "../../utils/getTotalAmount";
 
 const IncomesController = () => {
+  const getPipeline = (query: string) =>
+    AggregationService().getPipelineFromQuery(query);
+
   const getIncomes = async ({ query }, res: any) => {
     try {
-      const incomes = await Income.find();
+      const incomes = await Income.aggregate(getPipeline(query));
+
       if (incomes.length < 1) {
         res.status(404).json({ error: `Wrong query: ${query}` });
       }
       res.json(incomes);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+  const getTotalIncomes = async ({ query }, res: any) => {
+    try {
+      const incomes = await Income.aggregate(getPipeline(query));
+
+      if (incomes.length < 1) {
+        res.status(404).json({ error: `Wrong query: ${query}` });
+      }
+
+      const totalIncomes = getTotalAmount(incomes);
+
+      res.json({ totalIncomes });
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -59,7 +81,14 @@ const IncomesController = () => {
     }
   };
 
-  return { getIncome, getIncomes, addIncome, updateIncome, deleteIncome };
+  return {
+    getTotalIncomes,
+    getIncome,
+    getIncomes,
+    addIncome,
+    updateIncome,
+    deleteIncome,
+  };
 };
 
 export default IncomesController;

@@ -1,4 +1,4 @@
-import Account from "../models/account";
+import Account from "../../models/account";
 
 const AccountsController = () => {
   const getAccounts = async ({ query }, res: any) => {

@@ -1,12 +1,14 @@
 import * as mongoose from "mongoose";
+import TransactionSchema from "./transactionSchema";
+import { INCOME_CATEGORIES } from "../utils/constants";
 
-const IncomeSchema = new mongoose.Schema({
-  name: String,
-  date: { type: Date, default: Date.now },
-  amount: Number,
-  category: String,
-  regular: { type: Boolean, default: false },
-});
+const IncomeSchema = TransactionSchema(
+  {
+    regular: { type: Boolean, default: false },
+  },
+  INCOME_CATEGORIES
+);
+
 const Income = mongoose.model("Income", IncomeSchema);
 
 export default Income;
