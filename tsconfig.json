@@ -9,5 +9,5 @@
     "outDir": "build",
     "noImplicitAny": false
   },
-  "include": ["api/**/*.ts"]
+  "include": ["src/**/*.ts"]
 }

@@ -2,11 +2,11 @@
   "name": "fin-api",
   "version": "0.0.1",
   "description": "API for finance tracker.",
-  "main": "api/index.ts",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
     "build": "rimraf ./build/* && tsc",
-    "start": "tsc && nodemon api/index.ts",
+    "start": "tsc && nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "klubiniecki",
