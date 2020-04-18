@@ -71,7 +71,7 @@ const RequestService = () => {
   const deleteItem = async (id: string, res: any, model: any) => {
     try {
       const item = await model.findByIdAndDelete(id);
-      res.status(200).json({ message: `Expense ${item._id} deleted.` });
+      res.status(200).json(item);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }

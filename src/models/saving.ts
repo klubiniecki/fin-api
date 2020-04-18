@@ -4,7 +4,7 @@ import { SAVING_CATEGORIES } from "../utils/constants";
 
 const SavingSchema = TransactionSchema(
   {
-    type: { type: String, default: "Saving" },
+    type: { type: String, default: "saving" },
     name: { type: String, default: "Saving" },
   },
   SAVING_CATEGORIES
