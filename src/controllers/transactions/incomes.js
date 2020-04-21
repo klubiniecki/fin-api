@@ -11,14 +11,13 @@ const IncomesController = () => {
     getTotalAmount,
   } = RequestService();
 
-  const getIncomes = ({ query }: any, res: any) => getItems(query, res, Income);
-  const getIncome = ({ params }, res: any) => getItem(params.id, res, Income);
-  const addIncome = ({ body }, res: any) => addItem(body, res, Income);
-  const updateIncome = (req: any, res: any) => updateItem(req, res, Income);
-  const deleteIncome = ({ params }, res: any) =>
-    deleteItem(params.id, res, Income);
+  const getIncomes = ({ query }, res) => getItems(query, res, Income);
+  const getIncome = ({ params }, res) => getItem(params.id, res, Income);
+  const addIncome = ({ body }, res) => addItem(body, res, Income);
+  const updateIncome = (req, res) => updateItem(req, res, Income);
+  const deleteIncome = ({ params }, res) => deleteItem(params.id, res, Income);
 
-  const getTotalIncomes = ({ query }, res: any) =>
+  const getTotalIncomes = ({ query }, res) =>
     getTotalAmount(query, res, Income);
 
   return {

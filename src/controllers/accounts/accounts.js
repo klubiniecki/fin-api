@@ -1,17 +1,17 @@
-import * as fetch from "node-fetch";
+import fetch from "node-fetch";
 import Account from "../../models/account";
 import RequestService from "../../services/requestService";
 
 const AccountsController = () => {
   const { getItem, addItem, updateItem, deleteItem } = RequestService();
 
-  const getAccounts = async (_: any, res: any) => {
+  const getAccounts = async (_, res) => {
     try {
       const currencyRes = await fetch(process.env.CURRENCY_URI);
       const currency = await currencyRes.json();
       const accounts = await Account.find();
 
-      const accountsWithAmountEUR = accounts.map((acc: any) => ({
+      const accountsWithAmountEUR = accounts.map((acc) => ({
         _id: acc.id,
         name: acc.name,
         amount: acc.amount,
@@ -25,10 +25,10 @@ const AccountsController = () => {
     }
   };
 
-  const getAccount = ({ params }, res: any) => getItem(params.id, res, Account);
-  const addAccount = ({ body }, res: any) => addItem(body, res, Account);
-  const updateAccount = (req: any, res: any) => updateItem(req, res, Account);
-  const deleteAccount = ({ params }, res: any) =>
+  const getAccount = ({ params }, res) => getItem(params.id, res, Account);
+  const addAccount = ({ body }, res) => addItem(body, res, Account);
+  const updateAccount = (req, res) => updateItem(req, res, Account);
+  const deleteAccount = ({ params }, res) =>
     deleteItem(params.id, res, Account);
 
   return { getAccount, getAccounts, addAccount, updateAccount, deleteAccount };

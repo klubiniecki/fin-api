@@ -1,11 +1,11 @@
 import AggregationService from "./aggregationService";
-import getTotal from "../utils/getTotalAmount";
+import getTotal from "../utils/getTotalAmount/getTotalAmount";
 
 const RequestService = () => {
-  const getPipeline = (query: string) =>
+  const getPipeline = (query) =>
     AggregationService().getPipelineFromQuery(query);
 
-  const getItems = async (query: string, res: any, model: any) => {
+  const getItems = async (query, res, model) => {
     try {
       const items = await model.aggregate(getPipeline(query));
 
@@ -18,7 +18,7 @@ const RequestService = () => {
     }
   };
 
-  const getTotalAmount = async (query: string, res: any, model: any) => {
+  const getTotalAmount = async (query, res, model) => {
     try {
       const items = await model.aggregate(getPipeline(query));
       const name = model.modelName;
@@ -34,7 +34,7 @@ const RequestService = () => {
     }
   };
 
-  const getItem = async (id: string, res: any, model: any) => {
+  const getItem = async (id, res, model) => {
     try {
       const item = await model.findById(id);
       if (!item) {
@@ -46,7 +46,7 @@ const RequestService = () => {
     }
   };
 
-  const addItem = async (body: {}, res: any, model: any) => {
+  const addItem = async (body, res, model) => {
     try {
       const newItem = new model(body);
       const item = await model.create(newItem);
@@ -56,7 +56,7 @@ const RequestService = () => {
     }
   };
 
-  const updateItem = async (req: any, res: any, model: any) => {
+  const updateItem = async (req, res, model) => {
     try {
       const item = await model.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
@@ -68,7 +68,7 @@ const RequestService = () => {
     }
   };
 
-  const deleteItem = async (id: string, res: any, model: any) => {
+  const deleteItem = async (id, res, model) => {
     try {
       const item = await model.findByIdAndDelete(id);
       res.status(200).json(item);

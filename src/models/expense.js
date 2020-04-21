@@ -1,5 +1,5 @@
-import * as mongoose from "mongoose";
-import TransactionSchema from "./transactionSchema";
+import mongoose from "mongoose";
+import TransactionSchema from "./transactionSchema.js";
 import { EXPENSE_CATEGORIES } from "../utils/constants";
 
 const ExpenseSchema = TransactionSchema(
