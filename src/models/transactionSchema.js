@@ -1,9 +1,6 @@
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 
-const TransactionSchema = (
-  extensions: { [key: string]: any },
-  categories: string[]
-) => {
+const TransactionSchema = (extensions, categories) => {
   const schema = new mongoose.Schema({
     name: String,
     date: { type: Date, default: Date.now },

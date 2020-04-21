@@ -2,24 +2,21 @@ import AggregationService from "../../services/aggregationService";
 import Expense from "../../models/expense";
 import Income from "../../models/income";
 import Saving from "../../models/saving";
-import { Transaction } from "../../types";
-import getTotalAmount from "../../utils/getTotalAmount";
+import getTotalAmount from "../../utils/getTotalAmount/getTotalAmount";
 
 const TransactionsController = () => {
-  const getPipeline = (query: string) =>
+  const getPipeline = (query) =>
     AggregationService().getPipelineFromQuery(query);
 
-  const getTransactions = async ({ query }, res: any) => {
+  const getTransactions = async ({ query }, res) => {
     try {
       const aggregation = getPipeline(query);
       const expenses = await Expense.aggregate(aggregation);
       const incomes = await Income.aggregate(aggregation);
       const savings = await Saving.aggregate(aggregation);
-      const transactions: Transaction[] = [
-        ...expenses,
-        ...incomes,
-        ...savings,
-      ].sort((a, b) => b.date - a.date);
+      const transactions = [...expenses, ...incomes, ...savings].sort(
+        (a, b) => b.date - a.date
+      );
 
       if (transactions.length < 1) {
         res.status(404).json({ error: `Wrong query: ${query}` });
@@ -30,7 +27,7 @@ const TransactionsController = () => {
     }
   };
 
-  const getTotalTransactions = async ({ query }, res: any) => {
+  const getTotalTransactions = async ({ query }, res) => {
     try {
       const aggregation = getPipeline(query);
       const expenses = await Expense.aggregate(aggregation);

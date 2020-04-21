@@ -11,14 +11,13 @@ const SavingsController = () => {
     getTotalAmount,
   } = RequestService();
 
-  const getSavings = ({ query }: any, res: any) => getItems(query, res, Saving);
-  const getSaving = ({ params }, res: any) => getItem(params.id, res, Saving);
-  const addSaving = ({ body }, res: any) => addItem(body, res, Saving);
-  const updateSaving = (req: any, res: any) => updateItem(req, res, Saving);
-  const deleteSaving = ({ params }, res: any) =>
-    deleteItem(params.id, res, Saving);
+  const getSavings = ({ query }, res) => getItems(query, res, Saving);
+  const getSaving = ({ params }, res) => getItem(params.id, res, Saving);
+  const addSaving = ({ body }, res) => addItem(body, res, Saving);
+  const updateSaving = (req, res) => updateItem(req, res, Saving);
+  const deleteSaving = ({ params }, res) => deleteItem(params.id, res, Saving);
 
-  const getTotalSavings = ({ query }, res: any) =>
+  const getTotalSavings = ({ query }, res) =>
     getTotalAmount(query, res, Saving);
 
   return {

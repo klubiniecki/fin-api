@@ -1,7 +1,7 @@
-import * as express from "express";
-import * as dotenv from "dotenv";
-import * as cors from "cors";
-import * as bodyParser from "body-parser";
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import bodyParser from "body-parser";
 import initializeDatabase from "./database/initializeDatabase";
 import router from "./router/router";
 

@@ -1,8 +1,6 @@
-import getFirstDateOfMonth from "../utils/getFirstDateOfMonth";
-
 const QueryService = () => {
   const getMatchFromQuery = (query = "") => {
-    let match: any = {};
+    let match = {};
 
     if (query["name"]) {
       match.name = { $in: [query["name"]] };
