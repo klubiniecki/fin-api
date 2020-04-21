@@ -5,13 +5,8 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "rimraf ./build/* && tsc",
-    "start": "ts-node src/index.ts",
-    "dev": "tsc && nodemon src/index.ts",
+    "start": "tsc && nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "engines": {
-    "node": "10.x"
   },
   "author": "klubiniecki",
   "license": "ISC",
