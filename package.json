@@ -9,6 +9,9 @@
     "start": "tsc && nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "author": "klubiniecki",
   "license": "ISC",
   "dependencies": {
