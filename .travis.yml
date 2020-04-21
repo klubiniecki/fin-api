@@ -1,18 +1,18 @@
 language: node_js
 node_js:
-  - 10
-
+  - 12
 jobs:
   include:
     - stage: test
-      name: "Test"
+      name: Test
       script: yarn test
-
     - stage: deploy
-      name: "Deploy"
+      name: Deploy
       script: skip
       deploy:
         provider: heroku
-        app: fin-track-api
         api_key:
-          secure: XHz8B24+xsYNiYpj3XLqoctA/GpIpcveRWEhc2tSSqP/hvk4FKOhfzthG1htdOyD5ZbMd6vEPKGzsEY3uHEZsF4qCtBvZd7jZOJ87OikmYy1Nk8rka+CFxKsvBT2oSELS3DsLMLuzMwMthk4sUFTdMvG1BRDsbgUTjmbAjB3w+5K+o+c64BSZXCD4H7Gg8uZebotheIfuTr+uyOyRhX3O1psvdRu8ckiDrEQ0ukMWZH5O9Xp90jwRYyPIvVpOqmcNr3zOb2XljIvA7+OvDnzdUqAxt/6rMo8QF4KM6QuPlKKDYA7pgL7Z6wtz6t+9BxKF2UgsogWYx6/oMMzUk3bKuLhjo//UuURSCp81eZmgWvUeQ8Hs/u7kV3jG0H9L31U1G21dk0psvOsLlvk+m2lAzYgUvPIdYsRYmzVViEtQ+LM5bM0fDligTQcMyOvpzEuRxGkQhDR0ju6655FfsKrs8sj56bYgFyCTM9SDPpb7aIdyqvttUmWBuEsQwvKPfFgHn8BZPJ8qfnQ/Znb6TJmzipLY6vxnIj2IDatnD4EB5poxBzmfKK+t4O9d/u9uZnHz7+f7YO0u+V0WcPZuexWQzLhhcoR0r5Kohccrb9J1+pUSZh1cYKu3JkEeCLh6qJhh+HSnjWDKgdf5UFVtxP7kbqy38d0NK4SYdF6cPUtfxY=
+          secure: hOQFL+zr40ooe/plI8lGY/7HPa4WsZyHeNzlNSng9KS09HE/zQHR9JdrWqVFcxeSCr/8SV5d4viJ9kvtpwcE6GjrcQx/SHYxXJk15ePUnEKrHbmHZwYmZFHL0kgHg0aF7S4/NaCLP9VaqhsHR2YtYs+vX0If/6/+yGaGHML9NZ2dZ/8o7/OrB8QElR+JIjKkckJgWaWnvEoC2nZhFNSQD17NrP0x+VF4vOByhpfsFVtmcJpqWXWIDKsV32jy0H1AiI+XLprntYFhOdG85b4oIJ8nI4XBJnxeoqtNUueQcXtGslCZ5J0UlY5qxnUp00WHy/0r8axMeqKJI5HHgbKrTFnhHpSX8BeEI8XeM93XH6YTuudFzvfWa5GYwxA2hG3kDMOp1WdSdQVl01AWwNNqpNLDeZfJFBwn1cmKweLaMVewffb763sB1pPcPdYwyLGOo+TjwdnoDuNTR1PfBE7fvh3Ca/7aQEdiArNtrRziLpdBxSkF23Pw7zz4BbsLjUmFmsnBgcpJIziaAr+xlXNf4EkuSccfNpIdoG8qQ6YOM9xIWwgMX2DGDFui24UagSdF6SIIAo6WjhpPMJ+xVYamgIai0PjaPqBhVPNUlR2nUVaFgb/7Zq7qqFZCaGo+RMnBEwmgWWxHu8BJN/Je4RiEgJkNVH77wEFLlkDUOFUr4rw=
+        app: fin-track-api
+        on:
+          repo: klubiniecki/fin-api

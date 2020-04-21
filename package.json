@@ -9,7 +9,7 @@
     "test:watch": "jest --watch"
   },
   "engines": {
-    "node": "10.x"
+    "node": "12.16.x"
   },
   "author": "klubiniecki",
   "license": "ISC",
