@@ -5,7 +5,6 @@ import { INCOME_CATEGORIES } from "../utils/constants";
 const IncomeSchema = TransactionSchema(
   {
     type: { type: String, default: "income" },
-    regular: { type: Boolean, default: false },
   },
   INCOME_CATEGORIES
 );

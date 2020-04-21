@@ -13,6 +13,7 @@ const TransactionSchema = (
       enum: categories,
       required: true,
     },
+    regular: { type: Boolean, default: false },
   });
 
   if (extensions) {

@@ -2,9 +2,7 @@ import getFirstDateOfMonth from "../utils/getFirstDateOfMonth";
 
 const QueryService = () => {
   const getMatchFromQuery = (query = "") => {
-    let match: any = {
-      date: { $gte: getFirstDateOfMonth() },
-    };
+    let match: any = {};
 
     if (query["name"]) {
       match.name = { $in: [query["name"]] };
@@ -16,14 +14,10 @@ const QueryService = () => {
       match.category = { $in: categories };
     }
 
-    if (query["startDate"]) {
-      const date = new Date(query["from"]);
-      match.date = { $gte: date };
-    }
-
-    if (query["endDate"]) {
-      const date = new Date(query["from"]);
-      match.date = { $lte: date };
+    if (query["startDate"] && query["endDate"]) {
+      const startDate = new Date(query["startDate"]);
+      const endDate = new Date(query["endDate"]);
+      match.date = { $gte: startDate, $lte: endDate };
     }
 
     return match;
