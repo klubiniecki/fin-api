@@ -8,6 +8,9 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "author": "klubiniecki",
   "license": "ISC",
   "dependencies": {
