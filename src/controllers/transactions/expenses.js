@@ -9,6 +9,7 @@ const ExpensesController = () => {
     updateItem,
     deleteItem,
     getTotalAmount,
+    getTotalAmountByCategory,
   } = RequestService();
 
   const getExpenses = ({ query }, res) => getItems(query, res, Expense);
@@ -21,6 +22,9 @@ const ExpensesController = () => {
   const getTotalExpenses = ({ query }, res) =>
     getTotalAmount(query, res, Expense);
 
+  const getTotalExpensesByCategory = ({ query }, res) =>
+    getTotalAmountByCategory(query, res, Expense);
+
   return {
     getExpense,
     getExpenses,
@@ -28,6 +32,7 @@ const ExpensesController = () => {
     updateExpense,
     deleteExpense,
     getTotalExpenses,
+    getTotalExpensesByCategory,
   };
 };
 

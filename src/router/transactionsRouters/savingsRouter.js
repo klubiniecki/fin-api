@@ -10,9 +10,12 @@ const {
   updateSaving,
   deleteSaving,
   getTotalSavings,
+  getTotalSavingsByCategory,
 } = SavingsController();
 
 savingsRouter.get("/total", getTotalSavings);
+savingsRouter.get("/totalByCategory", getTotalSavingsByCategory);
+
 savingsRouter.get("/", getSavings);
 savingsRouter.get("/:id", getSaving);
 savingsRouter.post("/", addSaving);

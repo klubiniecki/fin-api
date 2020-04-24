@@ -9,6 +9,7 @@ const IncomesController = () => {
     updateItem,
     deleteItem,
     getTotalAmount,
+    getTotalAmountByCategory,
   } = RequestService();
 
   const getIncomes = ({ query }, res) => getItems(query, res, Income);
@@ -20,8 +21,12 @@ const IncomesController = () => {
   const getTotalIncomes = ({ query }, res) =>
     getTotalAmount(query, res, Income);
 
+  const getTotalIncomesByCategory = ({ query }, res) =>
+    getTotalAmountByCategory(query, res, Income);
+
   return {
     getTotalIncomes,
+    getTotalIncomesByCategory,
     getIncome,
     getIncomes,
     addIncome,

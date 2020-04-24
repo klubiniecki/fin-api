@@ -10,9 +10,12 @@ const {
   updateIncome,
   deleteIncome,
   getTotalIncomes,
+  getTotalIncomesByCategory,
 } = IncomesController();
 
 incomesRouter.get("/total", getTotalIncomes);
+incomesRouter.get("/totalByCategory", getTotalIncomesByCategory);
+
 incomesRouter.get("/", getIncomes);
 incomesRouter.get("/:id", getIncome);
 incomesRouter.post("/", addIncome);

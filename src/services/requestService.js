@@ -1,5 +1,6 @@
 import AggregationService from "./aggregationService";
 import getTotal from "../utils/getTotalAmount/getTotalAmount";
+import { EXPENSE_CATEGORIES } from "../utils/constants";
 
 const RequestService = () => {
   const getPipeline = (query) =>
@@ -29,6 +30,27 @@ const RequestService = () => {
       const amount = getTotal(items);
 
       res.json({ [name]: amount });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+  const getTotalAmountByCategory = async (query, res, model) => {
+    try {
+      const items = await model.aggregate(
+        getPipeline(query).concat({
+          $group: {
+            _id: "$category",
+            total: { $sum: "$amount" },
+          },
+        })
+      );
+
+      if (items.length < 1) {
+        res.status(404).json({ error: `Wrong query: ${query}` });
+      }
+
+      res.json(items);
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
@@ -77,7 +99,15 @@ const RequestService = () => {
     }
   };
 
-  return { getItems, getItem, addItem, updateItem, deleteItem, getTotalAmount };
+  return {
+    getItems,
+    getItem,
+    addItem,
+    updateItem,
+    deleteItem,
+    getTotalAmount,
+    getTotalAmountByCategory,
+  };
 };
 
 export default RequestService;

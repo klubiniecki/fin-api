@@ -10,9 +10,12 @@ const {
   updateExpense,
   deleteExpense,
   getTotalExpenses,
+  getTotalExpensesByCategory,
 } = ExpensesController();
 
 expensesRouter.get("/total", getTotalExpenses);
+expensesRouter.get("/totalByCategory", getTotalExpensesByCategory);
+
 expensesRouter.get("/", getExpenses);
 expensesRouter.get("/:id", getExpense);
 expensesRouter.post("/", addExpense);

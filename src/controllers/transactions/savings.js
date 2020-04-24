@@ -9,6 +9,7 @@ const SavingsController = () => {
     updateItem,
     deleteItem,
     getTotalAmount,
+    getTotalAmountByCategory,
   } = RequestService();
 
   const getSavings = ({ query }, res) => getItems(query, res, Saving);
@@ -20,6 +21,9 @@ const SavingsController = () => {
   const getTotalSavings = ({ query }, res) =>
     getTotalAmount(query, res, Saving);
 
+  const getTotalSavingsByCategory = ({ query }, res) =>
+    getTotalAmountByCategory(query, res, Saving);
+
   return {
     getSaving,
     getSavings,
@@ -27,6 +31,7 @@ const SavingsController = () => {
     updateSaving,
     deleteSaving,
     getTotalSavings,
+    getTotalSavingsByCategory,
   };
 };
 
