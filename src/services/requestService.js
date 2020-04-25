@@ -1,6 +1,5 @@
 import AggregationService from "./aggregationService";
 import getTotal from "../utils/getTotalAmount/getTotalAmount";
-import { EXPENSE_CATEGORIES } from "../utils/constants";
 
 const RequestService = () => {
   const getPipeline = (query) =>

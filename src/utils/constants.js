@@ -1,18 +1,29 @@
 export const EXPENSE_CATEGORIES = [
   "Groceries",
-  "Home",
-  "Fun",
-  "Baby",
+  "Rent",
+  "Utilities",
+  "Gaia",
   "Car",
-  "Health",
-  "Cosmetics",
   "Travel",
+  "Fun",
+  "Restaurant",
+  "Wellness",
+  "Medical",
+  "Household",
+  "Clothes",
+  "Subscriptions",
   "Other",
 ];
 
 export const INCOME_CATEGORIES = ["Salary", "Sales", "Other"];
 
-export const SAVING_CATEGORIES = ["Savings", "Gaia"];
+export const SAVING_CATEGORIES = [
+  "Regular",
+  "Gaia",
+  "Yearly",
+  "Travel",
+  "Other",
+];
 
 export const TRANSACTION_CATEGORIES = [
   ...EXPENSE_CATEGORIES,
