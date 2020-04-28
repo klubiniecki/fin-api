@@ -8,7 +8,6 @@ const QueryService = () => {
 
     if (query["category"]) {
       const categories = query["category"].split(",");
-
       match.category = { $in: categories };
     }
 
