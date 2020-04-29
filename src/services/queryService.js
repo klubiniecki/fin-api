@@ -6,6 +6,10 @@ const QueryService = () => {
       match.name = { $in: [query["name"]] };
     }
 
+    if (query["regular"]) {
+      match.regular = { $in: [query["regular"] === "true" ? true : false] };
+    }
+
     if (query["category"]) {
       const categories = query["category"].split(",");
       match.category = { $in: categories };
