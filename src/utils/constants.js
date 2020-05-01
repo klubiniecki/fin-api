@@ -2,7 +2,7 @@ export const EXPENSE_CATEGORIES = [
   "Groceries",
   "Rent",
   "Utilities",
-  "Gaia",
+  "Baby",
   "Car",
   "Travel",
   "Fun",
@@ -12,17 +12,17 @@ export const EXPENSE_CATEGORIES = [
   "Household",
   "Clothes",
   "Subscriptions",
-  "Other",
+  "Other expense",
 ];
 
-export const INCOME_CATEGORIES = ["Salary", "Sales", "Other"];
+export const INCOME_CATEGORIES = ["Salary", "Sales", "Other income"];
 
 export const SAVING_CATEGORIES = [
   "Regular",
   "Gaia",
   "Yearly",
-  "Travel",
-  "Other",
+  "Vacations",
+  "Other saving",
 ];
 
 export const TRANSACTION_CATEGORIES = [
